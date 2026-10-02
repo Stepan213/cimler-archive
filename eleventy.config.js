@@ -7,6 +7,12 @@ export default function (eleventyConfig) {
     if (data.draft) return false;
   });
 
+  // A line like "12. května …" is a Czech date, not an ordered list item.
+  // Escape the dot when a lowercase word follows; "1. Capitalised" stays a list.
+  eleventyConfig.addPreprocessor("czech-dates", "md", (data, content) =>
+    content.replace(/^( {0,3})(\d{1,4})\.(?= +\p{Ll})/gmu, "$1$2\\.")
+  );
+
   eleventyConfig.addFilter("readableDate", (d, lang = "en") =>
     new Date(d).toLocaleDateString(lang === "cs" ? "cs-CZ" : "en-GB", {
       day: "numeric", month: "long", year: "numeric", timeZone: "UTC",

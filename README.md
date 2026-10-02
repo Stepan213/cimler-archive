@@ -18,6 +18,9 @@ Static site built with [Eleventy](https://www.11ty.dev/), deployed to GitHub Pag
    It will be served at `https://archive.cimler.net/articles/slug/` (the date prefix is dropped from the URL).
    Add `draft: true` to keep it out of the build.
 
+   A line starting with a number and a lowercase word (`12. května …`) is treated as text, not a list.
+   Numbered lists need a capitalised first word (`1. První bod`), or escape the dot manually: `12\. …`.
+
 2. `git add . && git commit -m "Add my note" && git push` — live in about a minute.
 
 ## Preview locally
