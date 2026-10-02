@@ -1,0 +1,24 @@
+---
+permalink: /articles/feed.xml
+eleventyExcludeFromCollections: true
+layout: false
+tags: []
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Archive · cimler.net</title>
+  <link href="https://archive.cimler.net/articles/feed.xml" rel="self"/>
+  <link href="https://archive.cimler.net/articles/"/>
+  <id>https://archive.cimler.net/articles/</id>
+  <updated>{% if collections.articles.length %}{{ (collections.articles | last).date | isoDate }}{% endif %}</updated>
+  <author><name>Štěpán Cimler</name></author>
+{%- for post in collections.articles | reverse %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="https://archive.cimler.net{{ post.url }}"/>
+    <id>https://archive.cimler.net{{ post.url }}</id>
+    <updated>{{ post.date | isoDate }}</updated>
+    <content type="html">{{ post.content }}</content>
+  </entry>
+{%- endfor %}
+</feed>

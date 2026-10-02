@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Articles
+permalink: /articles/
+eleventyExcludeFromCollections: true
+tags: []
+---
+<h1>Articles</h1>
+<ul class="post-list">
+{%- for post in collections.articles | reverse %}
+  <li>
+    <time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+    <a href="{{ post.url }}">{{ post.data.title }}</a>
+    {%- if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
+  </li>
+{%- else %}
+  <li>Nothing here yet.</li>
+{%- endfor %}
+</ul>
+<p class="muted"><a href="/articles/feed.xml">RSS feed</a></p>
