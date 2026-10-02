@@ -1,17 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ lang or 'en' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }}{% if title != "Archive" %} · Archive{% endif %}</title>
-  {%- if description %}<meta name="description" content="{{ description }}">{% endif %}
+  {%- if description %}
+  <meta name="description" content="{{ description }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  {%- endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Inter:wght@400;500&display=swap&subset=latin-ext">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="alternate" type="application/atom+xml" href="/articles/feed.xml" title="Articles">
 </head>
 <body>
-  <header><a href="/articles/">archive.cimler.net</a></header>
+  <header class="site"><a href="/articles/">archive<span>.cimler.net</span></a></header>
   <main>
 {{ content | safe }}
   </main>
+  <footer class="site"><a href="/articles/">Archive</a> · <a href="/articles/feed.xml">RSS</a></footer>
 </body>
 </html>

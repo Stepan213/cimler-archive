@@ -1,9 +1,16 @@
 ---
 layout: base.njk
 ---
-<article>
-  <h1>{{ title }}</h1>
-  <p class="muted"><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
+<article class="post">
+  <header class="post-head">
+    <p class="meta">
+      <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate(lang) }}</time>
+      <span aria-hidden="true">·</span> {{ content | readingTime(lang) }}
+    </p>
+    <h1>{{ title }}</h1>
+  </header>
+  <div class="prose">
 {{ content | safe }}
+  </div>
 </article>
-<p><a href="/articles/">← All articles</a></p>
+<p class="back"><a href="/articles/">← {% if lang == "cs" %}Všechny články{% else %}All articles{% endif %}</a></p>
